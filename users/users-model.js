@@ -10,7 +10,7 @@ async function add(user) {
 }
 
 function find() {
-	return db("users").select("id", "username","department")
+	return db("users").select("id", "username", "password","department")
 }
 
 function findBy(filter) {
@@ -26,9 +26,25 @@ function findById(id) {
 		.first()
 }
 
+
+
+function update(id, changes) {
+	return db('users')
+		.where({ id })
+		.update(changes);
+}
+
+function deleteUser(id) {
+	return db('users')
+		.where('id', id)
+		.del();
+}
+
 module.exports = {
 	add,
 	find,
 	findBy,
 	findById,
+	deleteUser,
+	update
 }

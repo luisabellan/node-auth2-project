@@ -8,7 +8,7 @@ var restrict = require("../middleware/restrict");
 
 var router = express.Router(); // This endpoint is only available to logged-in admin users due to the `restrict` middleware
 
-router.get("/", restrict("admin"), function _callee(req, res, next) {
+router.get("/", function _callee(req, res, next) {
   var authError;
   return regeneratorRuntime.async(function _callee$(_context) {
     while (1) {
@@ -48,7 +48,7 @@ router.get("/", restrict("admin"), function _callee(req, res, next) {
   }, null, null, [[1, 9]]);
 }); // This endpoint is only available to logged-in admin users due to the `restrict` middleware
 
-router.get("/:id", restrict("admin"), function _callee2(req, res, next) {
+router.get("/:id", function _callee2(req, res, next) {
   return regeneratorRuntime.async(function _callee2$(_context2) {
     while (1) {
       switch (_context2.prev = _context2.next) {
@@ -77,46 +77,38 @@ router.get("/:id", restrict("admin"), function _callee2(req, res, next) {
       }
     }
   }, null, null, [[0, 8]]);
-});
-/* //logout
-router.get("/logout", restrict("admin"), (req, res, next) => {
-	// this will delete the session in the database and try to expire the cookie,
-	// though it's ultimately up to the client if they delete the cookie or not.
-	// but it becomes useless to them once the session is deleted server-side.
-	req.session.destroy((err) => {
-		if (err) {
-			next(err)
-		} else {
-			res.json({
-				message: "Successfully logged out",
-			})
-		}
-	})
-}) */
+}); //logout
 
-/*   // This handles the route `PUT /users/:id`
-  router.put("/:id",  restrict("admin"), (req, res) => {
-	Users.update(req.params.id, req.body)
-	  .then((user) => {
-		res.status(200).json(user);
-	  })
-	  .catch((error) => {
-		next(error);
-	  });
+router.get("/logout", function (req, res, next) {
+  // this will delete the session in the database and try to expire the cookie,
+  // though it's ultimately up to the client if they delete the cookie or not.
+  // but it becomes useless to them once the session is deleted server-side.
+  req.session.destroy(function (err) {
+    if (err) {
+      next(err);
+    } else {
+      res.json({
+        message: "Successfully logged out"
+      });
+    }
   });
- */
+}); // This handles the route `PUT /users/:id`
 
-/*   // This handles the route `DELETE /users/:id`
-  router.delete("/:id", restrict("admin"), (req, res) => {
-	Users.deleteUser(req.params.id)
-	  .then((count) => {
-		res.status(200).json({
-		  message: "The user has been nuked",
-		});
-	  })
-	  .catch((error) => {
-		next(error);
-	  });
-	}); */
+router.put("/:id", function (req, res) {
+  Users.update(req.params.id, req.body).then(function (user) {
+    res.status(200).json(user);
+  })["catch"](function (error) {
+    next(error);
+  });
+}); // This handles the route `DELETE /users/:id`
 
+router["delete"]("/:id", function (req, res) {
+  Users.deleteUser(req.params.id).then(function (count) {
+    res.status(200).json({
+      message: "The user has been nuked"
+    });
+  })["catch"](function (error) {
+    next(error);
+  });
+});
 module.exports = router;
