@@ -17,6 +17,7 @@ router.get("/",  async (req, res, next) => {
 	}
 	try {
 		res.json(await Users.find())
+		//res.json(await Users.find().where({department:req.body.department })) 
 	/* 	console.log(req.params)
 		let department = user.body.department
 		res.json(await Users.find().where({department})) */
