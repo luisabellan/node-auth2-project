@@ -18,7 +18,7 @@ router.get("/", function _callee(req, res, next) {
             message: "You shall not pass!",
             "if": function _if(user) {
               return res.status(409).json({
-                message: "authError"
+                message: authError
               });
             }
           };

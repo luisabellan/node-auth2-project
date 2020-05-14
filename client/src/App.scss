@@ -90,14 +90,13 @@ form {
 }
 
 .myForm {
-  position: absolute;
-  top: 40rem;
-  left: 0;
-  margin-top: 0rem;
-  margin-bottom: 0rem;
+  
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
+  margin: 20%;
+  align-self: center;
+  justify-content: center;
+  align-content: center;
 
   legend {
     padding-left: 40px;

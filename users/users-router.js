@@ -11,13 +11,19 @@ router.get("/",  async (req, res, next) => {
 		
 		if (user) {
 			return res.status(409).json({
-				message: "authError",
+				message: authError,
 			})
 		}
 	}
 	try {
 		res.json(await Users.find())
+	/* 	console.log(req.params)
+		let department = user.body.department
+		res.json(await Users.find().where({department})) */
+		//res.json(await Users.findByDepartment(req.body.department))
 
+		//res.json(await Users.findBy(req.params.department))
+//${req.params.department}
 	
 
 	
