@@ -13,6 +13,7 @@ function find() {
 	return db("users").select("id", "username", "password","department")
 }
 
+
 function findBy(filter) {
 	return db("users")
 		.select("id", "username", "password", "department")

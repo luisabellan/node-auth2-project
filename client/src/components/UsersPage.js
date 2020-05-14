@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
-// import Bubbles from "./Bubbles";
 import UsersList from "./UsersList";
 
 
@@ -27,7 +26,6 @@ const UsersPage = () => {
     <>
       
       <UsersList users={usersList} updateUsers={setUsersList} />
-      {/* <Bubbles users={usersList} /> */}
    
 
     </>

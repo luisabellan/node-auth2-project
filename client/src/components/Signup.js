@@ -30,6 +30,10 @@ const Signup = (props) => {
       .then(res => {
         console.log(res);
         setUserToAdd(userToAdd);
+        
+     
+        // nice for UX, auto redirect to the main dash
+        props.history.push("/login");
 
       })
       .catch(err => {
