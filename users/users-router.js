@@ -27,21 +27,7 @@ router.get("/:id", async (req, res, next) => {
 	}
 })
 
- //logout
-router.get("/logout", (req, res, next) => {
-	// this will delete the session in the database and try to expire the cookie,
-	// though it's ultimately up to the client if they delete the cookie or not.
-	// but it becomes useless to them once the session is deleted server-side.
-	req.session.destroy((err) => {
-		if (err) {
-			next(err)
-		} else {
-			res.json({
-				message: "Successfully logged out",
-			})
-		}
-	})
-}) 
+
    // This handles the route `PUT /users/:id`
   router.put("/:id",   (req, res) => {
 	Users.update(req.params.id, req.body)
