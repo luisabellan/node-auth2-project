@@ -21,17 +21,11 @@ function findBy(filter) {
 
 function findById(id) {
 	return db("users")
-<<<<<<< HEAD
-		.select("id", "username", "department")
-=======
 		.select("id", "username", "password","department")
->>>>>>> ccdafec87a22e47606d9e960c0d2fa7742aea5fd
 		.where({ id })
 		.first()
 }
 
-<<<<<<< HEAD
-=======
 
 
 function update(id, changes) {
@@ -46,15 +40,11 @@ function deleteUser(id) {
 		.del();
 }
 
->>>>>>> ccdafec87a22e47606d9e960c0d2fa7742aea5fd
 module.exports = {
 	add,
 	find,
 	findBy,
 	findById,
-<<<<<<< HEAD
-=======
 	deleteUser,
 	update
->>>>>>> ccdafec87a22e47606d9e960c0d2fa7742aea5fd
 }

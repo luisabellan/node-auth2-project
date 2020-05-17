@@ -2,15 +2,11 @@ const express = require("express")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const Users = require("../users/users-model")
-const restrict = require("../middleware/restrict")
+const secrets = require('../config/secrets')
 
 const router = express.Router()
 
-<<<<<<< HEAD
 router.post("/register",  async (req, res, next) => {
-=======
-router.post("/register", async (req, res, next) => {
->>>>>>> ccdafec87a22e47606d9e960c0d2fa7742aea5fd
 	try {
 		const { username } = req.body
 		const user = await Users.findBy({ username }).first()
@@ -27,15 +23,12 @@ router.post("/register", async (req, res, next) => {
 	}
 })
 
-<<<<<<< HEAD
-router.post("/login",  async (req, res, next) => {
-	const authError = {
-		message: "Invalid Credentials",
-=======
-router.post("/login", async (req, res, next) => {
+/*  not working, redoing it underneath
+ router.post("/login", async (req, res, next) => {
+
+
 	const authError = {
 		message: "You shall not pass!",
->>>>>>> ccdafec87a22e47606d9e960c0d2fa7742aea5fd
 	}
 
 	try {
@@ -56,11 +49,7 @@ router.post("/login", async (req, res, next) => {
 
 		// this sends the token back as a cookie instead of in the request body,
 		// so the client will automatically save it in its cookie jar.
-<<<<<<< HEAD
-		res.cookie("token", jwt.sign(tokenPayload, process.env.JWT_SECRET))
-=======
 		res.cookie("token", jwt.sign(tokenPayload, process.env.JWT_SECRET || "La vida es sueño"))
->>>>>>> ccdafec87a22e47606d9e960c0d2fa7742aea5fd
 
 		res.json({
 			message: `Welcome ${user.username}!`,
@@ -68,9 +57,48 @@ router.post("/login", async (req, res, next) => {
 	} catch(err) {
 		next(err)
 	}
-})
+}) */
+router.post('/login', (req, res) => {
+  let { username, password } = req.body;
 
-<<<<<<< HEAD
+  Users.findBy({ username })
+    .first()
+    .then(user => {
+      if (user && bcrypt.compareSync(password, user.password)) {
+        const token = generateToken(user); // new line
+ 
+        // the server needs to return the token to the client
+        // this doesn't happen automatically like it happens with cookies
+        res.status(200).json({
+          message: `Welcome ${user.username}!, have a token...`,
+          token, // attach the token as part of the response
+        });
+      } else {
+        res.status(401).json({ message: 'Invalid Credentials' });
+      }
+    })
+    .catch(error => {
+      res.status(500).json(error);
+    });
+});
+
+function generateToken(user) {
+  const payload = {
+    subject: user.id, // sub in payload is what the token is about
+    username: user.username,
+    department: user.department,
+    role: user.role,
+    // ...otherData
+  };
+
+  const options = {
+    expiresIn: '1d', // show other available options in the library's documentation
+  };
+
+
+	
+  return jwt.sign(payload, process.env.JWT_SECRET || 'La vida es sueño', options); // this method is synchronous
+}
 
 router.get("/logout",  (req, res, next) => {
 	// this will delete the session in the database and try to expire the cookie,
@@ -87,6 +115,4 @@ router.get("/logout",  (req, res, next) => {
 	})
 })
 
-=======
->>>>>>> ccdafec87a22e47606d9e960c0d2fa7742aea5fd
 module.exports = router

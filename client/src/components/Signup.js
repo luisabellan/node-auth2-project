@@ -91,8 +91,7 @@ const Signup = (props) => {
       <label>
         password:
               <input
-          onChange={e =>
-            setUserToAdd({
+          onChange={e => setUserToAdd({
               ...userToAdd,
               password: e.target.value
             })
@@ -102,9 +101,7 @@ const Signup = (props) => {
       </label>
       <label>
         department:
-              <input
-          onChange={e =>
-            setUserToAdd({
+              <input onChange={e => setUserToAdd({
               ...userToAdd,
               department: e.target.value
             })

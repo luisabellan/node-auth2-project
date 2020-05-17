@@ -112,11 +112,7 @@ router.post("/login", function _callee2(req, res, next) {
           }; // this sends the token back as a cookie instead of in the request body,
           // so the client will automatically save it in its cookie jar.
 
-<<<<<<< HEAD
-          res.cookie("token", jwt.sign(tokenPayload, process.env.JWT_SECRET));
-=======
           res.cookie("token", jwt.sign(tokenPayload, process.env.JWT_SECRET || "La vida es sueño"));
->>>>>>> ccdafec87a22e47606d9e960c0d2fa7742aea5fd
           res.json({
             message: "Welcome ".concat(user.username, "!")
           });

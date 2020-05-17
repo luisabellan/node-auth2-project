@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken")
 
-function restrict(role = "normal") {
+// add role normal here
+function restrict(role = 'normal') {
 	return async (req, res, next) => {
 		const authError = {
 			message: "You shall not pass!",
@@ -18,12 +19,14 @@ function restrict(role = "normal") {
 			// we can trust the data in the payload and consider the user logged in.
 			// if it isn't, we know the payload may have been tampered with, and we
 			// make the user log in again.
-<<<<<<< HEAD
-			jwt.verify(token, process.env.JWT_SECRET, (err, decodedPayload) => {
-=======
 			jwt.verify(token, process.env.JWT_SECRET  || "La vida es sueño", (err, decodedPayload) => {
->>>>>>> ccdafec87a22e47606d9e960c0d2fa7742aea5fd
-				if (err || decodedPayload.userRole !== role) {
+
+				// add this to parenthesis after adding a role to each user in the database
+				//  normal --> decodePayload.userRole // 'admin' !== role 
+				// decodePayload.userRole !== role after user have a role in the database
+				
+				
+				if (err || decodePayload.role  !== role ) {
 					return res.status(401).json(authError)
 				}
 

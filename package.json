@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
   "name": "node-auth2-project",
   "version": "1.0.0",
   "description": "- Authentication.\r - Express Middleware.\r - JSON Web Tokens (JWTs).\r - Hashing Passwords.",
@@ -33,42 +32,7 @@
     "sqlite3": "^4.2.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.3"
+    "nodemon": "^2.0.3",
+    "node-sass": "^4.14.1"
   }
-=======
-		"name": "node-auth2-project",
-		"version": "1.0.0",
-		"description": "## Topics",
-		"main": "index.js",
-		"scripts": {
-				"server": "nodemon -r dotenv/config index.js",
-				"start": "node index.js"
-		},
-		"devDependencies": {
-				"dotenv": "8.2.0",
-				"nodemon": "^2.0.2"
-		},
-		"dependencies": {
-				"bcryptjs": "^2.4.3",
-				"cookie-parser": "1.4.5",
-				"cors": "^2.8.5",
-				"express": "^4.17.1",
-				"express-session": "1.17.1",
-				"helmet": "^3.21.3",
-				"jsonwebtoken": "8.5.1",
-				"knex": "^0.21.1",
-				"sqlite3": "^4.1.1"
-		},
-		"repository": {
-				"type": "git",
-				"url": "git+https://github.com/luisabellan/node-auth2-project.git"
-		},
-		"keywords": [],
-		"author": "",
-		"license": "ISC",
-		"bugs": {
-				"url": "https://github.com/luisabellan/node-auth2-project/issues"
-		},
-		"homepage": "https://github.com/luisabellan/node-auth2-project#readme"
->>>>>>> ccdafec87a22e47606d9e960c0d2fa7742aea5fd
 }
