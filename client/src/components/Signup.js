@@ -34,7 +34,7 @@ const Signup = (props) => {
         
      
         // nice for UX, auto redirect to the main dash
-        props.history.push("/login");
+        props.history.push("/signin");
 
       })
       .catch(err => {

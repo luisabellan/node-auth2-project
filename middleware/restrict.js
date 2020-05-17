@@ -19,21 +19,21 @@ function restrict(role ="normal") {
 			// we can trust the data in the payload and consider the user logged in.
 			// if it isn't, we know the payload may have been tampered with, and we
 			// make the user log in again.
-			jwt.verify(token, process.env.JWT_SECRET  || "La vida es sueño", (err, decodedPayload) => {
+			jwt.verify(token, process.env.JWT_SECRET  || "La vida es sueño", (err, decoded) => {
 
 				// add this to parenthesis after adding a role to each user in the database
 				//  normal --> decodePayload.userRole // 'admin' !== role 
 				// decodePayload.userRole !== role after user have a role in the database
 				
-				console.log(decodePayload.role)
-				if (err || decodePayload.role  !== role ) {
+				if (err || decoded.role  !== role ) {
+					console.log(decoded.userRole)
 					return res.status(401).json(authError)
 				}
 
 				// we attach the decoded payload values to the request, just in case we
 				// need to access them in later middleware functions or route handlers.
 				// (to look up the user by ID, for example.)
-				req.token = decodedPayload
+				req.token = decoded
 
 				next()
 			})
