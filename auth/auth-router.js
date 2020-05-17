@@ -104,6 +104,29 @@ router.get("/logout",  (req, res, next) => {
 	// this will delete the session in the database and try to expire the cookie,
 	// though it's ultimately up to the client if they delete the cookie or not.
 	// but it becomes useless to them once the session is deleted server-side.
+
+
+
+/*	You cannot manually expire a token after it has been created. Thus, you cannot log out with JWT on the server-side as you do with sessions.
+
+JWT is stateless, meaning that you should store everything you need in the payload and skip performing a DB query on every request. But if you plan to have a strict log out functionality, that cannot wait for the token auto-expiration, even though you have cleaned the token from the client-side, then you might need to neglect the stateless logic and do some queries. so what's a solution?
+
+ Set a reasonable expiration time on tokens
+
+Delete the stored token from client-side upon log out
+
+Query provided token against The Blacklist on every authorized request
+
+Blacklist
+“Blacklist” of all the tokens that are valid no more and have not expired yet. You can use a DB that has a TTL option on documents which would be set to the amount of time left until the token is expired.
+
+Redis
+Redis is a good option for blacklist, which will allow fast in-memory access to the list. Then, in the middleware of some kind that runs on every authorized request, you should check if the provided token is in The Blacklist. If it is you should throw an unauthorized error. And if it is not, let it go and the JWT verification will handle it and identify if it is expired or still active.
+
+For more information, see How to log out when using JWT. by Arpy Vanyan
+
+	/* I using sessions and cookies we could: 
+	
 	req.session.destroy((err) => {
 		if (err) {
 			next(err)
@@ -112,7 +135,7 @@ router.get("/logout",  (req, res, next) => {
 				message: "Successfully logged out",
 			})
 		}
-	})
+	}) */ 
 })
 
 module.exports = router

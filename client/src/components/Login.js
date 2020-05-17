@@ -69,10 +69,11 @@ const Login = (props) => {
           </div>
 
           <div className="button">
-
             <button>Log in</button>
-
           </div>
+
+          <br />
+          <a href="../signup">Register</a>
 
         </form>
       </div>

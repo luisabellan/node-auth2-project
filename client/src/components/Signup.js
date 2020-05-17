@@ -9,7 +9,8 @@ import './Signup.scss'
 const initialUser = {
   username: "",
   password: "",
-  department: ""
+  department: "",
+  role:""
 };
 
 const Signup = (props) => {
@@ -45,7 +46,7 @@ const Signup = (props) => {
 
 
 
-
+/* 
 
     // add in our login api call
     axiosWithAuth()
@@ -60,7 +61,7 @@ const Signup = (props) => {
     .catch(err => {
       console.log(err);
     });
-   
+    */
   
   
   const handleChange = e => {
@@ -107,6 +108,16 @@ const Signup = (props) => {
             })
           }
           value={userToAdd.department}
+        />
+      </label>
+      <label>
+        role:
+              <input onChange={e => setUserToAdd({
+              ...userToAdd,
+              role: e.target.value
+            })
+          }
+          value={userToAdd.role}
         />
       </label>
       <div className="button-row">
