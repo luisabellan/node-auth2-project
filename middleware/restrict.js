@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken")
 
-// add role normal here
-function restrict(role = 'normal') {
+
+function restrict(role ="normal") {
 	return async (req, res, next) => {
 		const authError = {
 			message: "You shall not pass!",
@@ -25,7 +25,7 @@ function restrict(role = 'normal') {
 				//  normal --> decodePayload.userRole // 'admin' !== role 
 				// decodePayload.userRole !== role after user have a role in the database
 				
-				
+				console.log(decodePayload.role)
 				if (err || decodePayload.role  !== role ) {
 					return res.status(401).json(authError)
 				}

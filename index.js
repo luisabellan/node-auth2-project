@@ -16,7 +16,7 @@ server.use(cookieParser())
 
 server.use("/api", authRouter)
 // restrict("admin"),
-server.use("/api/users",  usersRouter)
+server.use("/api/users",  restrict("admin"),   usersRouter)
 
 server.get("/", (req, res, next) => {
 	res.status(200).json({

@@ -8,11 +8,12 @@ const UsersPage = () => {
   // fetch your colors data from the server when the component mounts
 
   useEffect(() => {
-    // make a GET request  fetch the users data 
+    // make a GET request to fetch the users data 
     axiosWithAuth()
       .get("/users")
       .then(res => {
   //      console.log(res);
+         // set that data to the usersList state property
         setUsersList(res.data);
 
       })
@@ -20,7 +21,7 @@ const UsersPage = () => {
         console.log(err);
       });
   });
-  // set that data to the usersList state property
+ 
 
   return (
     <>

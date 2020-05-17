@@ -5,6 +5,7 @@ const initialUser = {
   username: "",
   password: "",
   department: "",
+  role:""
 };
 
 const UsersList = ({ users, updateUsers }) => {
