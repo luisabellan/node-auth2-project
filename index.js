@@ -9,14 +9,17 @@ const port = process.env.PORT || 5000
 
 const restrict = require("./middleware/restrict")
 
-server.use(cors())
+server.use(cors({
+	credentials: true,
+	origin: "http://localhost:3000",
+}))
 server.use(helmet())
-server.use(express.json())
 server.use(cookieParser())
+server.use(express.json())
 
 server.use("/api", authRouter)
 // restrict("admin"),
-server.use("/api/users", restrict('admin'),    usersRouter)
+server.use("/api/users",    usersRouter)
 
 server.get("/", (req, res, next) => {
 	res.status(200).json({

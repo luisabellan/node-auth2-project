@@ -7,7 +7,7 @@ const router = express.Router()
 // This endpoint is only available to logged-in admin users due to the `restrict` middleware
 router.get("/", async (req, res, next) => {
 	
-	let department = await req.body.department
+	//let department =  req.body.department
 	try {
 		//res.status(200).json(await Users.find())
 		// res.status(200).json(await Users.find().where({department:req.body.department })) 

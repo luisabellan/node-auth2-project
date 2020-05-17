@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
-
+import cookie from "js-cookie"
+import jwt from "jsonwebtoken"
+import axios from "axios"
 import './Login.scss'
 
  // make a post request to retrieve a token from the api
@@ -10,22 +12,25 @@ import './Login.scss'
 const Login = (props) => {
 
   const [credentials, setCredentials] = useState({})
-  /* const[isLoading, setIsLoading] = useState(true) */
+  const[status, setStatus] = useState("") 
 
 
 
   
   const login = e => {
     e.preventDefault();
-    
+    const payload = credentials
+    setStatus("")
 
     // add in our login api call
-    axiosWithAuth()
-    .post("/login", credentials)
-    .then(res => {
-      console.log(res);
+    axios
+      .post("http://localhost:5000/api/login", payload, {withCredentials:true})
+    .then((res) => {
+      //console.log(res);
       localStorage.setItem("token", res.data.payload);
-     
+     const decoded = jwt.decode(cookie.get("token"))
+
+				setStatus(`Logged in as ${decoded}`)
       // nice for UX, auto redirect to the main dash
       props.history.push("/users");
     })
@@ -47,6 +52,8 @@ const Login = (props) => {
     return (
       <div className="form">
         <form onSubmit={login}>
+        <h1>Login</h1>
+			{status && <p>{status}</p>}
           <div className="username"><label>username:<input
             type="text"
             className="username"

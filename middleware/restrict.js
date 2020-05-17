@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken")
+const cookieParser = require('cookie-parser')
 
 
 function restrict(role ="normal") {
