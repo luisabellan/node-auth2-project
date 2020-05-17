@@ -30,7 +30,11 @@ function restrict() {
             // we can trust the data in the payload and consider the user logged in.
             // if it isn't, we know the payload may have been tampered with, and we
             // make the user log in again.
+<<<<<<< HEAD
             jwt.verify(token, process.env.JWT_SECRET, function (err, decodedPayload) {
+=======
+            jwt.verify(token, process.env.JWT_SECRET || "La vida es sueño", function (err, decodedPayload) {
+>>>>>>> ccdafec87a22e47606d9e960c0d2fa7742aea5fd
               if (err || decodedPayload.userRole !== role) {
                 return res.status(401).json(authError);
               } // we attach the decoded payload values to the request, just in case we

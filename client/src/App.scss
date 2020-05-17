@@ -51,6 +51,14 @@ body,
 
 .delete {
   color: rgb(216, 87, 87);
+<<<<<<< HEAD
+=======
+  cursor: default;
+}
+.delete:hover {
+  cursor: pointer;
+
+>>>>>>> ccdafec87a22e47606d9e960c0d2fa7742aea5fd
 }
 
 .color-box {
@@ -85,6 +93,7 @@ form {
 }
 
 .myForm {
+<<<<<<< HEAD
   position: absolute;
   top: 40rem;
   left: 0;
@@ -93,6 +102,15 @@ form {
   display: flex;
   flex-direction: column;
   margin: 0 auto;
+=======
+  
+  display: flex;
+  flex-direction: column;
+  margin: 20%;
+  align-self: center;
+  justify-content: center;
+  align-content: center;
+>>>>>>> ccdafec87a22e47606d9e960c0d2fa7742aea5fd
 
   legend {
     padding-left: 40px;

@@ -4,7 +4,11 @@ import { axiosWithAuth } from "../utils/axiosWithAuth";
 const initialUser = {
   username: "",
   password: "",
+<<<<<<< HEAD
   department: "",
+=======
+  department: ""
+>>>>>>> ccdafec87a22e47606d9e960c0d2fa7742aea5fd
 };
 
 const UsersList = ({ users, updateUsers }) => {
@@ -14,6 +18,28 @@ const UsersList = ({ users, updateUsers }) => {
   const [userToEdit, setUserToEdit] = useState(initialUser);
   const [userToAdd, setUserToAdd] = useState(initialUser);
 
+<<<<<<< HEAD
+=======
+
+  const logout = () => {
+   
+
+    console.log("logout")
+    
+    // logout user 
+    axiosWithAuth()    
+      .put(`/users/logout}`)
+       .then(res => {
+        setUserToEdit(userToEdit);
+       logout()
+        
+      }) 
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+>>>>>>> ccdafec87a22e47606d9e960c0d2fa7742aea5fd
   const editUser = user => {
     setEditing(true);
     setUserToEdit(user);
@@ -30,7 +56,11 @@ const UsersList = ({ users, updateUsers }) => {
     
     // edit user 
     axiosWithAuth()    
+<<<<<<< HEAD
       .put(`/api/users/${userToEdit.id}`, userToEdit)
+=======
+      .put(`/users/${userToEdit.id}`, userToEdit)
+>>>>>>> ccdafec87a22e47606d9e960c0d2fa7742aea5fd
       .then(res => {
         setUserToEdit(userToEdit);
        editUser(userToEdit)
@@ -44,7 +74,11 @@ const UsersList = ({ users, updateUsers }) => {
   const deleteUser = user => {
     // make a delete request to delete this user
     axiosWithAuth()
+<<<<<<< HEAD
     .delete(`/api/users/${user.id}`)
+=======
+    .delete(`/users/${user.id}`)
+>>>>>>> ccdafec87a22e47606d9e960c0d2fa7742aea5fd
     .then(res => {
       console.log(res);
       setEditing(false)
@@ -56,6 +90,7 @@ const UsersList = ({ users, updateUsers }) => {
     });
   };
 
+<<<<<<< HEAD
   const addUser = (e,user) => {
   e.preventDefault()
    
@@ -70,6 +105,8 @@ const UsersList = ({ users, updateUsers }) => {
       console.log(err);
     });
   };
+=======
+>>>>>>> ccdafec87a22e47606d9e960c0d2fa7742aea5fd
 
   return (
     <div className="users-wrap">
@@ -84,7 +121,11 @@ const UsersList = ({ users, updateUsers }) => {
                     deleteUser(user)
                   }
                 }>
+<<<<<<< HEAD
                   x
+=======
+                {"  "}DELETE
+>>>>>>> ccdafec87a22e47606d9e960c0d2fa7742aea5fd
               </span>{" "}
               {user.user}
             </span>
@@ -107,7 +148,11 @@ const UsersList = ({ users, updateUsers }) => {
               value={userToEdit.username}
             />
           </label>
+<<<<<<< HEAD
           <label>
+=======
+           <label>
+>>>>>>> ccdafec87a22e47606d9e960c0d2fa7742aea5fd
             password:
             <input
               onChange={e =>
@@ -118,6 +163,7 @@ const UsersList = ({ users, updateUsers }) => {
               }
               value={userToEdit.password}
             />
+<<<<<<< HEAD
           </label>
           <div className="button-row">
             <button  type="submit">save</button>
@@ -160,6 +206,38 @@ const UsersList = ({ users, updateUsers }) => {
           </div>
         </form>
       )}
+=======
+          </label> 
+          <label>
+            department:
+            <input
+              onChange={e =>
+                setUserToEdit({
+                  ...userToEdit,
+                  department: e.target.value 
+                })
+              }
+              value={userToEdit.department}
+            />
+          </label> 
+          <div className="button-row">
+            <button  type="submit">save</button>
+            <button onClick={() => setEditing(false)}>cancel</button>
+          </div>
+        </form>
+      )}
+      <button onClick={(props) => {
+        localStorage.removeItem('token')
+        window.location.replace("/users")
+
+      }
+        }>LOG OUT</button>
+      <div className="spacer" />
+
+      {/* stretch - build another form here to add a user */}
+      
+      
+>>>>>>> ccdafec87a22e47606d9e960c0d2fa7742aea5fd
       
 
     </div>

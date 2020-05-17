@@ -6,7 +6,11 @@ const restrict = require("../middleware/restrict")
 
 const router = express.Router()
 
+<<<<<<< HEAD
 router.post("/register",  async (req, res, next) => {
+=======
+router.post("/register", async (req, res, next) => {
+>>>>>>> ccdafec87a22e47606d9e960c0d2fa7742aea5fd
 	try {
 		const { username } = req.body
 		const user = await Users.findBy({ username }).first()
@@ -23,9 +27,15 @@ router.post("/register",  async (req, res, next) => {
 	}
 })
 
+<<<<<<< HEAD
 router.post("/login",  async (req, res, next) => {
 	const authError = {
 		message: "Invalid Credentials",
+=======
+router.post("/login", async (req, res, next) => {
+	const authError = {
+		message: "You shall not pass!",
+>>>>>>> ccdafec87a22e47606d9e960c0d2fa7742aea5fd
 	}
 
 	try {
@@ -46,7 +56,11 @@ router.post("/login",  async (req, res, next) => {
 
 		// this sends the token back as a cookie instead of in the request body,
 		// so the client will automatically save it in its cookie jar.
+<<<<<<< HEAD
 		res.cookie("token", jwt.sign(tokenPayload, process.env.JWT_SECRET))
+=======
+		res.cookie("token", jwt.sign(tokenPayload, process.env.JWT_SECRET || "La vida es sueño"))
+>>>>>>> ccdafec87a22e47606d9e960c0d2fa7742aea5fd
 
 		res.json({
 			message: `Welcome ${user.username}!`,
@@ -56,6 +70,7 @@ router.post("/login",  async (req, res, next) => {
 	}
 })
 
+<<<<<<< HEAD
 
 router.get("/logout",  (req, res, next) => {
 	// this will delete the session in the database and try to expire the cookie,
@@ -72,4 +87,6 @@ router.get("/logout",  (req, res, next) => {
 	})
 })
 
+=======
+>>>>>>> ccdafec87a22e47606d9e960c0d2fa7742aea5fd
 module.exports = router

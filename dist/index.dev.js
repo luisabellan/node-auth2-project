@@ -18,7 +18,11 @@ server.use(cors());
 server.use(helmet());
 server.use(express.json());
 server.use(cookieParser());
+<<<<<<< HEAD
 server.use("/api/", authRouter);
+=======
+server.use("/api", authRouter);
+>>>>>>> ccdafec87a22e47606d9e960c0d2fa7742aea5fd
 server.use("/api/users", usersRouter);
 server.get("/", function (req, res, next) {
   res.json({

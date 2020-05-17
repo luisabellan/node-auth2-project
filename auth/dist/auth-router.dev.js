@@ -68,7 +68,11 @@ router.post("/login", function _callee2(req, res, next) {
       switch (_context2.prev = _context2.next) {
         case 0:
           authError = {
+<<<<<<< HEAD
             message: "Invalid Credentials"
+=======
+            message: "You shall not pass!"
+>>>>>>> ccdafec87a22e47606d9e960c0d2fa7742aea5fd
           };
           _context2.prev = 1;
           _context2.next = 4;
@@ -108,7 +112,11 @@ router.post("/login", function _callee2(req, res, next) {
           }; // this sends the token back as a cookie instead of in the request body,
           // so the client will automatically save it in its cookie jar.
 
+<<<<<<< HEAD
           res.cookie("token", jwt.sign(tokenPayload, process.env.JWT_SECRET));
+=======
+          res.cookie("token", jwt.sign(tokenPayload, process.env.JWT_SECRET || "La vida es sueño"));
+>>>>>>> ccdafec87a22e47606d9e960c0d2fa7742aea5fd
           res.json({
             message: "Welcome ".concat(user.username, "!")
           });
@@ -127,6 +135,7 @@ router.post("/login", function _callee2(req, res, next) {
     }
   }, null, null, [[1, 17]]);
 });
+<<<<<<< HEAD
 router.get("/logout", function (req, res, next) {
   // this will delete the session in the database and try to expire the cookie,
   // though it's ultimately up to the client if they delete the cookie or not.
@@ -141,4 +150,6 @@ router.get("/logout", function (req, res, next) {
     }
   });
 });
+=======
+>>>>>>> ccdafec87a22e47606d9e960c0d2fa7742aea5fd
 module.exports = router;

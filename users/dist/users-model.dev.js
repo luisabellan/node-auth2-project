@@ -50,14 +50,37 @@ function findBy(filter) {
 }
 
 function findById(id) {
+<<<<<<< HEAD
   return db("users").select("id", "username", "department").where({
+=======
+  return db("users").select("id", "username", "password", "department").where({
+>>>>>>> ccdafec87a22e47606d9e960c0d2fa7742aea5fd
     id: id
   }).first();
 }
 
+<<<<<<< HEAD
+=======
+function update(id, changes) {
+  return db('users').where({
+    id: id
+  }).update(changes);
+}
+
+function deleteUser(id) {
+  return db('users').where('id', id).del();
+}
+
+>>>>>>> ccdafec87a22e47606d9e960c0d2fa7742aea5fd
 module.exports = {
   add: add,
   find: find,
   findBy: findBy,
+<<<<<<< HEAD
   findById: findById
+=======
+  findById: findById,
+  deleteUser: deleteUser,
+  update: update
+>>>>>>> ccdafec87a22e47606d9e960c0d2fa7742aea5fd
 };
